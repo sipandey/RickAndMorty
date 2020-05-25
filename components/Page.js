@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import styled, { ThemeProvider, createGlobalStyle } from "styled-components";
 import Header from "./Header";
 import Meta from "../components/Meta";
@@ -9,10 +10,11 @@ const theme = {
   black: "#393939",
   grey: "#3A3A3A",
   darkGrey: "#333234",
-  orange: '#a86914',
+  orange: "#a86914",
   lightGrey: "#E1E1E1",
   offWhite: "#EDEDED",
   maxWidth: "1200px",
+  outerWidth: "100%",
   bs: "0 12px 24px 0 rgba(0, 0, 0, 0.09)"
 };
 
@@ -22,7 +24,7 @@ const StyledPage = styled.div`
 `;
 
 const Inner = styled.div`
-  max-width: ${props => props.theme.maxWidth};
+  max-width: ${props => props.theme.outerWidth};
   margin: 0 auto;
   padding: 2rem;
 `;
@@ -63,5 +65,9 @@ class Page extends Component {
     );
   }
 }
+
+Page.propTypes = {
+  children: PropTypes.shape({})
+};
 
 export default Page;

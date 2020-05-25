@@ -3,9 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "npm run lint && next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "lint": "eslint components/*.js lib/*.js"
   },
   "dependencies": {
     "@apollo/react-hooks": "^3.1.5",
@@ -19,7 +20,9 @@
     "styled-components": "^5.1.0"
   },
   "devDependencies": {
-    "babel-plugin-styled-components": "^1.10.7"
+    "babel-plugin-styled-components": "^1.10.7",
+    "eslint": "^7.1.0",
+    "eslint-plugin-react": "^7.20.0"
   },
   "babel": {
     "env": {

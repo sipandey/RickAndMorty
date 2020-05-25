@@ -7,14 +7,19 @@ import {
   TraitKey,
   TraitValue
 } from "./Character.style";
+import { dayDiff } from "../lib/utils";
 
 const CHARACTER_TRAITS = ["status", "species", "gender", "origin", "location"];
 
 class Character extends Component {
-  renderCharacterTraits = character => {
+  constructor(props) {
+    super(props);
+    this.renderCharacterTraits = this.renderCharacterTraits.bind(this);
+  }
+  renderCharacterTraits(character) {
     return CHARACTER_TRAITS.map(trait => {
       return (
-        <CharacterTraits>
+        <CharacterTraits key={trait}>
           <TraitKey>{trait}</TraitKey>
           {trait === "origin" || trait === "location" ? (
             <TraitValue>{character[trait].name}</TraitValue>
@@ -24,7 +29,7 @@ class Character extends Component {
         </CharacterTraits>
       );
     });
-  };
+  }
 
   render() {
     const { character } = this.props;
@@ -32,7 +37,10 @@ class Character extends Component {
       <CharacterStyles>
         <Overlay>
           {character.name}
-          <p>{`Id: ${character.id} - Created: ${character.created}`}</p>
+          <p>{`Id: ${character.id} - Created: ${dayDiff(
+            new Date(character.created),
+            new Date()
+          )} years ago`}</p>
         </Overlay>
         {character.image && <img src={character.image} alt={character.name} />}
         {this.renderCharacterTraits(character)}
@@ -44,7 +52,10 @@ class Character extends Component {
 Character.propTypes = {
   character: PropTypes.shape({
     name: PropTypes.string.isRequired,
-    status: PropTypes.string.isRequired
+    status: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    created: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired
   })
 };
 
