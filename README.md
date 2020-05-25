@@ -33,6 +33,7 @@ $ cd RickAndMorty
 $ npm install
 $ npm run dev
 ```
+Browse the application on http://localhost:3000
 
 [pr]: https://github.com/sipandey/RickAndMorty
 [graphql]: https://graphql.org/
